@@ -84,9 +84,12 @@
         zoom: 2
       });
       var geocoder = new google.maps.Geocoder();
-
+   
+      console.log("Map is intialized: "+ new Date());
       document.getElementById('btnClick').addEventListener('click', function () {
+        console.log("Enter key is pressed: "+ new Date());
         geocodeAddress(geocoder, map);
+        
       });
 
     }
