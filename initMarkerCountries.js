@@ -3,6 +3,7 @@ $.ajax({
     url: "https://corona.lmao.ninja/countries",
     dataType: "json",
     success: function (data) {
+      console.log("Getting list of countries from the API: "+ new Date());
       $.each(data, function (i, obj) {
         var div_data = "<option value=" + obj.country + ">" + obj.country + "</option>";
         $(div_data).appendTo('#Countries');
@@ -16,6 +17,7 @@ $.ajax({
       'address': address
     }, function (results, status) {
       if (status === 'OK') {
+        console.log("Getting Latitude and Longitude of the Country selected: "+ new Date());
         resultsMap.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
           map: resultsMap,
@@ -29,6 +31,7 @@ $.ajax({
           success: function (data) {
             $.each(data, function (i, obj) {
               if (obj.country == document.getElementById('Countries').value) {
+                console.log("Relevant information of the selected country is displayed: "+ new Date());
                 var div_data = "<h3>" + obj.country + "</h3>" + "<p>cases: " + obj.cases +
                   " <br>todayCases: " + obj.todayCases +
                   " <br>deaths: " + obj.deaths + " <br>todayDeaths: " + obj.todayDeaths +
