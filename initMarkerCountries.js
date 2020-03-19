@@ -1,3 +1,7 @@
+$(window).on('load',function(){
+  $('#instructionModal').modal();
+});
+
 $.ajax({
     type: "GET",
     url: "https://corona.lmao.ninja/countries",
@@ -46,9 +50,14 @@ $.ajax({
             });
           }
         });
-
+        //$('#content').scrollIntoView(false);
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
   }
+  function scrollToBottom() {
+    var content = document.getElementById("content");
+    content.scrollIntoView(false);
+    console.log("scroll to buttom has happened");
+  } 

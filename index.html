@@ -6,72 +6,67 @@
   <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="initMarkerCountries.js"></script>
-  <style>
-    /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-    #map {
-      height: 100%;
-    }
-
-    /* Optional: Makes the sample page fill the window. */
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    div#map {
-      width: 80%;
-      margin: auto;
-      float: left;
-    }
-
-    .mapBox {
-      width: 20%;
-      float: right;
-    }
-
-    button.btn.btn-primary.dropdown-toggle {
-      width: 100%;
-    }
-
-    ul.dropdown-menu {
-      width: 100%;
-    }
-  </style>
 </head>
 
 <body>
-  <div id="map" class="mapdiv"></div>
-  <div class="conatiner">
-    <div class="mapBox form-group">
-      <!--<div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
+  <div class="modal fade" id="instructionModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content text-center">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Corona (COVID-19 Virus) Map</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h4>Instructions:</h4>
+          <p>1. Please select the country of which you want to view data related to Covid-19 cases.</p>
+          <p>2. Please tap "Enter" button.</p>
+          <p>3. Related data will be shown in the white area.</p>
+        </div>
+        <div class="modal-body">
+          <h4>Reference:</h4>
+          <ul>
+            <li>
+              Data API Github link: <a href="https://github.com/NovelCOVID/API">https://github.com/NovelCOVID/API</a>
+            </li>
+            <li>
+              Data API in JSON: <a href="https://corona.lmao.ninja/countries">https://corona.lmao.ninja/countries</a>
+            </li>
           </ul>
-        </div>-->
-      <div class="form-group my-2">
-        <select class="form-control" id="Countries">
-          <option>---Select Country---</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <br>
-        <button type="button" class="btn btn-primary" id="btnClick">Enter</button>
-      </div>
-      <div class="form-group">
-        <div id="content"></div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
+
+  <div id="map" class="mapdiv"></div>
+  <div class="conatiner" id="intractionBox">
+    <div class="form-group my-2 text-center ">
+      <select class="form-control mx-2" id="Countries">
+        <option>---Select Country---</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary" id="btnClick">Enter</button>
+    </div>
+    <div class="form-group">
+      <div id="content"></div>
+    </div>
+  </div>
+
+
+
   <script>
     var map;
 
@@ -84,12 +79,12 @@
         zoom: 2
       });
       var geocoder = new google.maps.Geocoder();
-   
-      console.log("Map is intialized: "+ new Date());
+
+      console.log("Map is intialized: " + new Date());
       document.getElementById('btnClick').addEventListener('click', function () {
-        console.log("Enter key is pressed: "+ new Date());
+        console.log("Enter key is pressed: " + new Date());
         geocodeAddress(geocoder, map);
-        
+        setTimeout(scrollToBottom, 1000);
       });
 
     }
