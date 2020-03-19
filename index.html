@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Simple Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
+
+<head>
+  <title>Simple Map</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="initMarkerCountries.js"></script>
+  <style>
+    /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      div#map {
-            width: 80%;
-            margin: auto;
-            float: left;
-        }
-      .mapBox {
-          width: 20%;
-          float: right;
-      }
-      button.btn.btn-primary.dropdown-toggle {
-          width: 100%;
-      }
+    #map {
+      height: 100%;
+    }
 
-      ul.dropdown-menu {
-          width: 100%;
-      }
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
-    </style>
-  </head>
-  <body>
-    <div id="map" class="mapdiv"></div>
-    <div class="conatiner">      
-      <div class="mapBox form-group">
-        <!--<div class="dropdown">
+    div#map {
+      width: 80%;
+      margin: auto;
+      float: left;
+    }
+
+    .mapBox {
+      width: 20%;
+      float: right;
+    }
+
+    button.btn.btn-primary.dropdown-toggle {
+      width: 100%;
+    }
+
+    ul.dropdown-menu {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map" class="mapdiv"></div>
+  <div class="conatiner">
+    <div class="mapBox form-group">
+      <!--<div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
           <span class="caret"></span></button>
           <ul class="dropdown-menu">
@@ -51,54 +58,41 @@
             <li><a href="#">JavaScript</a></li>
           </ul>
         </div>-->
-        <div class="form-group">
-          <select class="form-control" id="Countries">
-            <option>---Select Country---</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control" id="mapInput"> 
-          <button type="button" class="btn btn-primary" id="btnClick">Enter</button>
-        </div>
-        <div class="form-group">
-          <div id="content"></div>
-        </div>
+      <div class="form-group my-2">
+        <select class="form-control" id="Countries">
+          <option>---Select Country---</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <br>
+        <button type="button" class="btn btn-primary" id="btnClick">Enter</button>
+      </div>
+      <div class="form-group">
+        <div id="content"></div>
       </div>
     </div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 0, lng: 0},
-          zoom: 2
-        });
-      }
-      $.ajax({
-            type: "GET",
-            url:"https://corona.lmao.ninja/countries",
-            dataType: "json",
-            success: function (data) {
-                $.each(data,function(i,obj)
-                {                 
-                 var div_data="<option value="+obj.country+">"+obj.country+"</option>";
-                $(div_data).appendTo('#Countries'); 
-                });  
-                }
-          });
-          $("#btnClick").click(function(){
-                        var geocoder =  new google.maps.Geocoder();
-                geocoder.geocode( { 'address': $('#Countries').val()}, function(results, status) {
-                      if (status == google.maps.GeocoderStatus.OK) {
-                       console.log("location : " + results[0].geometry.location.lat() + " " +results[0].geometry.location.lng());
-                      } else {
-                       ("Something got wrong " + status);
-                      }
-                    });
-            });  
-            
-            
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPodOx_4C8n3TrzngrizGFUAm--Dgav7o&callback=initMap"
+  </div>
+  <script>
+    var map;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+          lat: 0,
+          lng: 0
+        },
+        zoom: 2
+      });
+      var geocoder = new google.maps.Geocoder();
+
+      document.getElementById('btnClick').addEventListener('click', function () {
+        geocodeAddress(geocoder, map);
+      });
+
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPodOx_4C8n3TrzngrizGFUAm--Dgav7o&callback=initMap"
     async defer></script>
-  </body>
+</body>
+
 </html>
