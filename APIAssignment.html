@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Map</title>
+    <title>Corona Map | 2 API Combination (maps.google) & (corona.lmao.ninja/countries)2</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
+    <script src="initMarkerCountries.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -20,7 +22,6 @@
             width: 80%;
             margin: auto;
         }
-
     </style>
   </head>
   <body>
@@ -30,8 +31,9 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 0, lng: 0},
-          zoom: 2
+          zoom: 2,
         });
+        initMarker(-25.363, 131.044);
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPodOx_4C8n3TrzngrizGFUAm--Dgav7o&callback=initMap"
