@@ -1,41 +1,49 @@
-    /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-    #map {
-        height: 100%;
-    }
+/* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+   #map {
+    height: 100%;
+}
 
-    /* Optional: Makes the sample page fill the window. */
+/* Optional: Makes the sample page fill the window. */
 
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
-    div#map {
-        width: 100%;
-        margin: auto;
-        float: left;
-    }
+div#map {
+    width: 100%;
+    margin: auto;
+    float: left;
+}
 
-    button.btn.btn-primary.dropdown-toggle {
-      width: 90%;
-    }
+button.btn.btn-primary.dropdown-toggle {
+    width: 90%;
+}
 
-    ul.dropdown-menu {
-      width: 90%;
-    } 
-    #content{
-        color: white;
-    }
+ul.dropdown-menu {
+    width: 90%;
+}
 
-    #intractionBox{
-        border: 1px #fff solid;
-    }
-    #intractionBox > div.form-group{
-        margin: 1rem;
-    }
+#content {
+    color: white;
+}
+
+#intractionBox {
+    border: 1px #fff solid;
+}
+
+#intractionBox>div.form-group {
+    margin: 1rem;
+}
+
+.instruction-img {
+    width: 100px;
+    height: 100px;
+}
+
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 300px) and (max-width: 991.98px) {
     #intractionBox {
@@ -48,7 +56,12 @@
         background-color: rgba(0, 0, 0, 0.7);
         overflow: auto;
     }
+    .instruction-img {
+        width: 50px;
+        height: 50px;
+    }
 }
+
 /*Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
     #intractionBox {
