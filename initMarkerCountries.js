@@ -4,7 +4,7 @@ $(window).on('load',function(){
 
 $.ajax({
     type: "GET",
-    url: "https://corona.lmao.ninja/countries",
+    url: "https://corona.lmao.ninja/v2/countries",
     dataType: "json",
     success: function (data) {
       console.log("Getting list of countries from the API: "+ new Date());
@@ -30,7 +30,7 @@ $.ajax({
 
         $.ajax({
           type: "GET",
-          url: "https://corona.lmao.ninja/countries",
+          url: "https://corona.lmao.ninja/v2/countries",
           dataType: "json",
           success: function (data) {
             $.each(data, function (i, obj) {
